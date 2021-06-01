@@ -1,4 +1,6 @@
 # coreutils
+#sudo() { if [[ "$1" == "vim" ]]; then exec /bin/sudo -E nvim "${@:2}"; else exec /bin/sudo "$@"; fi }
+sudo() { case "$1" in "vim") /bin/sudo -E nvim "${@:2}";; *) /bin/sudo "${@}";; esac; }
 hist() { history | tail -$1 }
 lg() { ls | grep $1; }
 mdir() { mkdir $1 && cd $1;}
